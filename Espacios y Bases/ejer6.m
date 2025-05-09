@@ -21,18 +21,17 @@ indices=[1 5513 5513*2 5513*3 5513*4 5513*5 5513*6 5513*7 5513*8];
 
 disp('calculando productos internos')
 for g=0:7
-  idxi = g * duracion + 1;
-  idxf = idxi + duracion - 1;
+  idxi=g * duracion + 1;
+  idxf=idxi + duracion - 1;
   segmento = y(idxi:idxf);
-  t = (0:duracion - 1) / fs;
-
+  t=0:T:(duracion/fs)-T;
   frecuen = 0;
   primax = -1000000;
 
-  for j = 1:length(frecuencias)
-    for k = 1:length(fases)
-      nota = sin(2 * pi * frecuencias(j) * t + fases(k));
-      priactual = dot(segmento, nota);
+  for j=1:length(frecuencias)
+    for k=1:length(fases)
+      nota=sin(2 * pi * frecuencias(j) * t + fases(k));
+      priactual=dot(segmento, nota);
       if priactual > primax
         primax = priactual;
         frecuen = j;
