@@ -31,36 +31,21 @@ indices=[17109 21790;
          69289 74512;
          80296 85755];
 
-#-----------MATRIZ CON FILAS Y COLUMNAS DE SENOS---------#
-filas=zeros(length(t),length(fases),length(y));
-columnas=zeros(length(t),length(fases),length(x));
-disp('Armado de matriz de senos');
-for i=1:length(t)
-  for j=1:length(fases)
-    for k=1:length(y)
-      filas(i,j,k)=sin(2*pi*y(k)*t(i)+fases(j));
-    endfor
-    for k=1:length(x)
-      columnas(i,j,k)=sin(2*pi*x(k)*t(i)+fases(j));
-    endfor
-  endfor
-endfor
-
-
-
 ##Productos internos
 disp('Calculo de productos internos : ');
 for g=1:7
+  segmento=h(indices(g,1):indices(g,2));
+  t=0:T:(length(segmento)*T)-T;
   priF=zeros(length(fases),length(y));
   priC=zeros(length(fases),length(x));
-  for i=indices(g,1):indices(g,2)
-    for j=1:length(fases)
-      for k=1:length(y)
-        priF(j,k)+=h(i)*filas(i,j,k);
-      endfor
-      for k=1:length(x)
-        priC(j,k)+=h(i)*columnas(i,j,k);
-      endfor
+  for j=1:length(fases)
+    for k=1:length(y)
+      fila = sin(2*pi*y(k)*t+fases(j));
+      priF(j,k)=dot(segmento,fila);
+    endfor
+    for k=1:length(x)
+      columna=sin(2*pi*x(k)*t+fases(j));
+      priC(j,k)=dot(segmento,columna);
     endfor
   endfor
 ##Comparacion fila, columna
@@ -112,3 +97,5 @@ for g=1:7
   endswitch
   numero
 endfor
+
+
