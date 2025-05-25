@@ -29,7 +29,7 @@ yA=zeros(length(t),1);
 for i=1:length(t)
     yA(i)=(45/16)*t(i)-(35/16)*t(i)^3;
 endfor
-plot(t,yA,';4 coeficientes;')
+plot(t,yA,'r;4 coeficientes;')
 
 #Error cuadratico total :
 disp("A ) Error cuadratico total : ")
@@ -40,7 +40,7 @@ yC=zeros(length(t),1);
 for i=1:length(t)
     yC(i)=(45/16)*t(i)-(35/16)*t(i)^3+ (sqrt(11/2))*(1/64)*((63*(t(i)^5))-(70*(t(i)^3))+(15*t(i)));
 endfor
-plot(t,yC,';6 coeficientes;')
+plot(t,yC,'g;6 coeficientes;')
 disp("C ) Error cuadratico total : ")
 norm(y-yC,2)^2
 
@@ -62,5 +62,7 @@ for k=1:length(beta2)
 endfor
 figure(2)
 surf(variacion,variacion,ect)
-
+xlabel('variacion en alfa');
+ylabel('variacion en beta');
+zlabel('Error cuadratico total');
 
