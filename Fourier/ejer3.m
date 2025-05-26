@@ -21,7 +21,7 @@ grid on;
 
 #Lado izquierdo de la ecuacion :
 #Desplazo diez muestras
-desplazamiento = 10;
+desplazamiento = 1;
 #Transformada X[k];
 sf=fft(s);
 #Multiplico por la exp compleja
