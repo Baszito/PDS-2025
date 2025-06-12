@@ -7,10 +7,13 @@ clf;
 H=@(s) 12500.*s./((44.*s.^2)+(60625.*s)+625*10^4);
 
 #graficamos H
+#Como es una funcion de Laplace, la evaluamos en jw para obtener la respuesta en frecuencia
 w_max=5000;
 w=0:w_max;
 s=j*w;
-mag_h=abs(H(s));
+mag_h=abs(H(s)); #Respuesta en frecuencia del sistema.
+
+#Convierto a f para graficar en hz, es mas entendible asi
 f=w/(2*pi);
 plot(f,mag_h);
 grid on;
@@ -30,7 +33,11 @@ plot(f(indice_f_corte),max_magnitud/2,'*')
 T_corte=1/(f_corte*4);
 
 #Definimos Z
-w=0:pi/w_max:pi;
+
+#Aca hay que pasar a el dominio Z, digital discretizado
+#Por lo tanto, w deja de ser una frecuencia angular por segundo
+#w pasa a ser radianes/muestra, es decir, va de 0 a pi por Nysquist
+w=0:pi/w_max:pi; #Divido pi/w_max para tener la misma cantidad de puntos que en la funcion original
 z=e.^(j*w);
 
 #------Transformacion de euler-----#
