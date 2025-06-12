@@ -6,6 +6,7 @@ cla;
 #2428265
 #Carga de datos :
 h=load('te.txt');
+
 hsize=length(h);
 fm=11025;
 
